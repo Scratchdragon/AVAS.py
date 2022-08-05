@@ -16,5 +16,4 @@ The variables are updated whenever ping() is called
 - get_playercount() : returns playercount, refreshes "playerCount" variable
 
 
-
-The AVAS api was released like an hour ago so I will probably be making a lot of changes as the API develops
+I am currently working on getting this package ready for PIP but my python experience is pretty limmited so this may take some time. If you wanna help out with doing packaging then just let me know

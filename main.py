@@ -1,6 +1,8 @@
-from avas import avas
+from avas import *
 
 # Init the api
 server = avas()
 
-print(server.online)
+print(" -- AVAS -- ")
+print("status: ",server.online)
+print("players: ",server.playerCount)

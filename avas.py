@@ -32,5 +32,9 @@ class avas:
 		self.players = self.api_element("playerCount")
 		return self.players
 
+	def get_ip(self):
+		self.api_get("myip")
+		return api.text
+
 	def __init__(self):
 		self.ping()

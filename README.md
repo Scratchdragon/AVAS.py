@@ -13,3 +13,7 @@ The variables are updated whenever ping() is called
 - ping() : returns server online, refreshes all variables
 - get_online() : returns server online, refreshes "online" variable
 - get_playercount() : returns playercount, refreshes "playerCount" variable
+
+
+
+The AVAS api was released like an hour ago so I will probably be making a lot of changes as the API develops

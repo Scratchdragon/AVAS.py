@@ -3,6 +3,7 @@ A python module for the AVAS minecraft server api
 
 ### Usage
 To use the api just add the avas.py file to your project and import it with "from avas import *" or "from avas import avas".
+Theres a very basic example for how to use the module in the main.py file
 
 ### Variables
 The variables are updated whenever ping() is called

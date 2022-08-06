@@ -30,15 +30,15 @@ class avas:
 		
 	def get_playercount(self):
 		self.api_get("stats")
-		self.players = self.api_element("playerCount")
+		self.playerCount = self.api_element("playerCount")
 		#Check for events
 		if(self._playercount_old != self.playerCount):
 			if(self._playercount_old > self.playerCount):
-				on_player_leave(self._playercount_old-self.playerCount)
+				self.on_player_leave(self._playercount_old-self.playerCount)
 			else:
-				on_player_leave(self.playerCount-self._playercount_old)
+				self.on_player_leave(self.playerCount-self._playercount_old)
 		
-		return self.players
+		return self.playerCount
 
 	def get_ip(self):
 		self.api_get("myip")

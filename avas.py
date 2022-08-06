@@ -7,6 +7,7 @@ class avas:
 	api = requests.get('https://api.avas.cc/ping')
 	online = False
 	playerCount = 0
+	_playercount_old = 0
 	
 	def api_get(self,item):
 		# just so im not writing request.get too much
@@ -30,6 +31,13 @@ class avas:
 	def get_playercount(self):
 		self.api_get("stats")
 		self.players = self.api_element("playerCount")
+		#Check for events
+		if(self._playercount_old != self.playerCount):
+			if(self._playercount_old > self.playerCount):
+				on_player_leave(self._playercount_old-self.playerCount)
+			else:
+				on_player_leave(self.playerCount-self._playercount_old)
+		
 		return self.players
 
 	def get_ip(self):
@@ -38,3 +46,12 @@ class avas:
 
 	def __init__(self):
 		self.ping()
+
+	def _loop(self):
+		self.ping()
+		
+	#Events
+	def on_player_join(self,quantity):
+		return
+	def on_player_leave(self,quantity):
+		return

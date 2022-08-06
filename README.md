@@ -31,7 +31,8 @@ def on_player_join(quantity) :
 server.start(5) #start polling events every 5 seconds to avoid throttling the api server
 ```
 The above code will print "Player Joined" whenever a player joins<br>
-Polling events will also run ping() each time, updating the variables dependant on it
+Polling events will also run ping() each time, updating the variables dependant on it<br>
+**Always run server.stop() at the end of you script** since otherwise it will be quite hard to stop the project
 
 
 I am currently working on getting this package ready for PIP but my python experience is pretty limmited so this may take some time. If you wanna help out with doing packaging then just let me know

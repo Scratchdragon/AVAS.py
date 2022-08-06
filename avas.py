@@ -42,7 +42,7 @@ class avas:
 
 	def get_ip(self):
 		self.api_get("myip")
-		return api.text
+		return self.api.text
 
 	def __init__(self):
 		self.ping()

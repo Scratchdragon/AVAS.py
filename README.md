@@ -6,7 +6,7 @@ To use the api just add the avas.py file to your project and import it with "fro
 Theres a very basic example for how to use the module in the main.py file
 
 ### Variables
-The variables are updated whenever ping() is called
+The variables are updated whenever ping() is called __or__ when the events are updated by avas.start()
 - online : returns true/false depending on if the server is up
 - playerCount : returns the number of currently logged in players
 

@@ -1,5 +1,7 @@
 import requests
 import json
+import threading
+import time
 
 #Scratchdragon made this bullshit code
 
@@ -8,7 +10,10 @@ class avas:
 	online = False
 	playerCount = 0
 	_playercount_old = 0
-	
+	_interval = 10
+	__thread=0
+	__stop=False
+
 	def api_get(self,item):
 		# just so im not writing request.get too much
 		self.api = requests.get('https://api.avas.cc/'+item)
@@ -36,7 +41,8 @@ class avas:
 			if(self._playercount_old > self.playerCount):
 				self.on_player_leave(self._playercount_old-self.playerCount)
 			else:
-				self.on_player_leave(self.playerCount-self._playercount_old)
+				self.on_player_join(self.playerCount-self._playercount_old)
+			self._playercount_old=self.playerCount
 		
 		return self.playerCount
 
@@ -44,14 +50,29 @@ class avas:
 		self.api_get("myip")
 		return self.api.text
 
-	def __init__(self):
-		self.ping()
-
 	def _loop(self):
+		while(not self.__stop) :
+			self.ping()
+			time.sleep(self._interval)
+
+	def start(self,interval):
+		self._interval = interval
+		self.__thread.start()
+
+	def stop(self):
+		self.__stop=True
+
+	def __init__(self):
+		self.__thread = threading.Thread(name='background', target=self._loop, args=[])
 		self.ping()
 		
 	#Events
 	def on_player_join(self,quantity):
-		return
+		pass
 	def on_player_leave(self,quantity):
-		return
+		pass
+
+	# Event decorator
+	def event(self,func):
+		setattr(self, func.__name__, func)
+		return func

@@ -15,22 +15,23 @@ class avas:
 	__stop=False
 
 	def api_get(self,item):
-		# just so im not writing request.get too much
 		self.api = requests.get('https://api.avas.cc/'+item)
+
 	def api_element(self,elem):
-		return json.loads(self.api.text)[elem]
+		try:
+			return json.loads(self.api.text)[elem]
+		except:
+			return 0
 	
 	def ping(self):
 		#ping will refresh all of the data
-		self.api_get("ping")
-		self.online = self.api_element("success")
+		self.get_online()
 		self.get_playercount()
 		return self.online
 
 	def get_online(self):
-		#pretty much ping() but without get_playercount
 		self.api_get("ping")
-		self.online = self.api_element("success")
+		self.online = bool(self.api_element("success"))
 		return self.online
 		
 	def get_playercount(self):

@@ -9,12 +9,25 @@ Theres a very basic example for how to use the module in the main.py file
 The variables are updated whenever ping() is called __or__ when the events are updated by avas.start()
 - online : returns true/false depending on if the server is up
 - playerCount : returns the number of currently logged in players
+- tps : returns the servers tps
+- messagesSent : returns the amount of messages sent in 24 hours
+- messagesBlocked : returns the amount of messages blocked in 24 hours
 
 ### Functions
 - ping() : returns server online, refreshes all variables
 - get_online() : returns server online, refreshes "online" variable
-- get_playercount() : returns playercount, refreshes "playerCount" variable
-- get_ip() : gets the ip of the api client
+- get_stats() : returns tps, refreshes tps, playerCount, messagesSent, messagesBlocked
+- get_session() : returns the session data of the client in the form of a "api_session" class
+
+### Classes
+
+**api_session**<br>
+This class is returned by get_session() and consists of five variables:
+- ip : the clients ip
+- authenticated : if the session is authenticated
+- authAttempts : how many failed auth attempts have occured
+- requestCount : how many requests have been sent in the current session
+- requestResetTime : the time since last request reset
 
 ### Events
 - on_player_join(quantity) : runs whenever a player joins

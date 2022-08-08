@@ -6,7 +6,11 @@ server = avas()
 print(" -- AVAS -- ")
 print("status: ",server.online)
 print("players: ",server.playerCount)
-print("clientip: ",server.get_ip())
+print("tps: ", server.tps)
+session = server.get_session()
+print("requests: ", session.requestCount)
+print("sessionip: ", session.ip)
+print("authenticated: ", session.authenticated)
 
 # Server events
 #Wrap the server on_player_join function

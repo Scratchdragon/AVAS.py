@@ -18,6 +18,7 @@ The variables are updated whenever ping() is called __or__ when the events are u
 - get_online() : returns server online, refreshes "online" variable
 - get_stats() : returns tps, refreshes tps, playerCount, messagesSent, messagesBlocked
 - get_session() : returns the session data of the client in the form of a "api_session" class
+- get_player(username) : returns the player stats from the username provided in the form of a "player" class
 
 ### Classes
 
@@ -28,6 +29,16 @@ This class is returned by get_session() and consists of five variables:
 - authAttempts : how many failed auth attempts have occured
 - requestCount : how many requests have been sent in the current session
 - requestResetTime : the time since last request reset
+<br><br>**player**<br>
+This class is used to store player data and consists of variables:
+- donor : if the player has donated
+- username : the username of the player according to the server
+- votebal : the amount of vote credits the player has
+- votePointsEnabled : im not sure tbh
+- statsRank : the rank of the player
+- countryOverrideEnabled : again i dont really know
+- lastJoin : the time since the player last joined
+- timePlayer : the total playtime of the player
 
 ### Events
 - on_player_join(quantity) : runs whenever a player joins

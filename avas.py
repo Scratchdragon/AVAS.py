@@ -5,6 +5,25 @@ import time
 
 #Scratchdragon made this bullshit code
 
+class player:
+	donor = False
+	username = ""
+	votebal = 0 #votePoints
+	votePointsEnabled = False
+	statsRank = 0
+	countryOverrideEnabled = False
+	lastJoin = 0
+	timePlayed = 0
+	def __init__(self, donor, username, votebal, votePointsEnabled, statsRank, countryOverrideEnabled, lastJoin, timePlayed):
+		self.donor = donor
+		self.username = username
+		self.votebal = votebal
+		self.votePointsEnabled = votePointsEnabled
+		self.statsRank = statsRank
+		self.countryOverrideEnabled = countryOverrideEnabled
+		self.lastJoin = lastJoin
+		self.timePlayed = timePlayed
+
 class api_session:
 	ip = ""
 	authenticated = False
@@ -30,7 +49,7 @@ class avas:
 	_interval = 10
 	__thread=0
 	__stop=False
-
+	
 	def api_get(self,item):
 		self.api = requests.get('https://api.avas.cc/'+item)
 
@@ -50,7 +69,7 @@ class avas:
 		self.api_get("ping")
 		self.online = bool(self.api_element("success"))
 		return self.online
-		
+
 	def get_stats(self):
 		self.api_get("stats")
 		#Player count
@@ -68,6 +87,19 @@ class avas:
 		self.messagesBlocked = self.api_element("messagesBlocked24h")
 		return self.tps
 
+	def get_player(self,username):
+		self.api_get("player?username="+username)
+		return player(
+			self.api_element("donor"),
+			self.api_element("username"),
+			self.api_element("votePoints"),
+			self.api_element("votePointsEnabled"),
+			self.api_element("statsRank"),
+			self.api_element("countryOverrideEnabled"),
+			self.api_element("lastJoin"),
+			self.api_element("timePlayed")
+		)
+	
 	def get_session(self):
 		self.api_get("myip")
 		ip = self.api.text
